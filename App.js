@@ -4,34 +4,71 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { useState } from 'react';
 
 export default function App() {
-  const [name, setName] = useState('Mash')
-  const [session, setSession] = useState({ number: 6, title: 'state' })
-  const [current, setCurrent] = useState(true)
+  const [name, setName] = useState('Style Test')
 
   const onClickHandler = () => {
-    setName('Programming With Mash')
-    setSession({ number: 7, title: 'Style' })
-    setCurrent(false)
+    setName('Programming with Mash')
   }
+
+  // const [session, setSession] = useState({ number: 6, title: 'state' })
+  // const [current, setCurrent] = useState(true)
+
+  // const onClickHandler = () => {
+  //   setName('Programming With Mash')
+  //   setSession({ number: 7, title: 'Style' })
+  //   setCurrent(false)
+  // }
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{name}</Text>
-      <Text style={styles.text}>This is session number {session.number} and about {session.title}</Text>
-      <Text style={styles.text}>{current ? 'current session' : 'next session'}</Text>
-      <Button title='Update State' onPress={onClickHandler}></Button>
-      <StatusBar style="auto" />
+    <View style={styles.body}>
+      <View style={styles.view1}>
+        <Text style={styles.text}>1</Text>
+      </View>
+      <View style={styles.view2}>
+        <Text style={styles.text}>2</Text>
+      </View>
+      <View style={styles.view3}>
+        <Text style={styles.text}>3</Text>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  body: {
     flex: 1,
-    backgroundColor: '#fff',
+    flexDirection: 'column',
+    backgroundColor: '#0000ff',
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
-    color: '#3d3d'
-  }
+    color: '#000000',
+    fontSize: 35,
+    fontStyle: 'italic',
+  },
+  view1: {
+    // width: 100,
+    // height: 100,
+    flex: 1,
+    backgroundColor: '#00ffff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  view2: {
+    // width: 100,
+    // height: 100,
+    flex: 1,
+    backgroundColor: '#ff00ff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  view3: {
+    // width: 100,
+    // height: 100,
+    flex: 1,
+    backgroundColor: '#ffff00',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
