@@ -1,11 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, ScrollView, RefreshControl, FlatList, SectionList, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView, RefreshControl, FlatList, SectionList, TextInput, Alert } from 'react-native';
 
 import { useState } from 'react';
 
 export default function App() {
 
   const [name, setName] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const onPressHandler = () => {
+    setSubmitted(!submitted);
+  }
 
   return (
     <View style={styles.body}>
@@ -18,9 +22,20 @@ export default function App() {
         keyboardType='numeric'
         maxLength={4}
       />
-      <Text style={styles.text}>
-        Your name is: {name}
-      </Text>
+      <Button
+        title={submitted ? 'Clear' : 'Submit'}
+        onPress={onPressHandler}
+        disabled={submitted}
+      />
+      {
+        submitted ?
+          <Text style={styles.text}>
+            You are registered as: {name}
+          </Text>
+          :
+          null
+      }
+
     </View>
   );
 
