@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, ScrollView, RefreshControl, FlatList, SectionList, TextInput, Alert } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView, RefreshControl, FlatList, SectionList, TextInput, Alert, ToastAndroid, Modal } from 'react-native';
 
 import { useState } from 'react';
 
@@ -7,12 +7,34 @@ export default function App() {
 
   const [name, setName] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);
   const onPressHandler = () => {
-    setSubmitted(!submitted);
+    if (name.length > 3) {
+      setSubmitted(!submitted);
+    } else {
+      // Alert.alert('Warnings', 'The name must be longer than 3 characters', [
+      //   { text: '응', onPress: () => console.log('응을 누르셨습니다.'), onPress: () => console.warn('응을 누르셨습니다.') },
+      //   { text: '아니', onPress: () => console.log('아니를 누르셨습니다.'), onPress: () => console.warn('아니를 누르셨습니다.') },
+      //   { text: '그래', onPress: () => console.log('그래를 누르셨습니다.'), onPress: () => console.warn('그래를 누르셨습니다.') },
+      // ], { cancelable: true, onDismiss: () => console.warn('Alert dismissed!') })
+
+      // ToastAndroid.showWithGravityAndOffset(
+      //   'The name must be longer than 3 characters',
+      //   ToastAndroid.LONG,
+      //   ToastAndroid.TOP,
+      //   0,
+      //   200
+      // )
+
+      setShowWarning(true);
+    }
   }
 
   return (
     <View style={styles.body}>
+      <Modal visible={showWarning} onRequestClose={() => { setShowWarning(false); }}>
+        <Text>The name must be longer than 3 characters</Text>
+      </Modal>
       <Text style={styles.text}>
         Please write your name:
       </Text>
