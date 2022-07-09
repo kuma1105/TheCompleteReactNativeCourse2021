@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, ScrollView, RefreshControl, FlatList, SectionList, TextInput, Alert, ToastAndroid, Modal } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView, RefreshControl, FlatList, SectionList, TextInput, Alert, ToastAndroid, Modal, Image } from 'react-native';
 
 import { useState } from 'react';
 
@@ -51,11 +51,17 @@ export default function App() {
       />
       {
         submitted ?
-          <Text style={styles.text}>
-            You are registered as: {name}
-          </Text>
+          <View style={styles.body}>
+            <Text style={styles.text}>
+              You are registered as: {name}
+            </Text>
+            <Image
+              style={styles.image}
+              source={require('./assets/cat2.jpg')}
+              resizeMode='stretch' />
+          </View>
           :
-          null
+          <Image style={styles.image} source={require('./assets/cat1.jpg')} resizeMode='stretch' />
       }
 
     </View>
@@ -81,6 +87,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     textAlign: 'center',
     fontSize: 15,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    margin: 10,
   }
   // view1: {
   //   // width: 100,
